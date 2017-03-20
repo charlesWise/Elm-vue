@@ -26,6 +26,7 @@ npm run build
 $router.go(-1)
 
 ##### tag="li" li标签
+``` bash
 <ul class="citylistul clear">
     <router-link  tag="li" v-for="item in hotcity" :to="'/city/' + item.id" :key="item.id">
         {{item.name}}
@@ -44,6 +45,6 @@ $router.go(-1)
         </ul>
     </li>
 </ul>
-
+```
 ##### String.fromCharCode(i)  根据字符码数获取对应的字符
 console.log(String.fromCharCode(65))  //'A'
