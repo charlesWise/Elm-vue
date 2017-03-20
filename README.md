@@ -10,3 +10,18 @@ npm run dev
 ### 线上版本
 npm run build
 生成的dist文件夹放在服务器即可正常访问
+
+### transition使用
+<transition name="router-fade" mode="out-in">
+    <router-view></router-view>
+</transition>
+
+.router-fade-enter-active, .router-fade-leave-active {
+    transition: opacity .3s;
+}
+.router-fade-enter, .router-fade-leave-active {
+    opacity: 0;
+}
+
+###返回上一个
+$router.go(-1)

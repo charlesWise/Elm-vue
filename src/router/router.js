@@ -46,9 +46,6 @@ const questionDetail = r => require.ensure([], () => r(require('../page/service/
 const find = r => require.ensure([], () => r(require('../page/find/find')), 'find')
 const download = r => require.ensure([], () => r(require('../page/download/download')), 'download')
 
-
-
-
 export default [{
     path: '/',
     component: App, //顶层路由，对应index.html
@@ -138,29 +135,30 @@ export default [{
             path: '/profile',
             component: profile,
             children: [{
-                path: 'info', //个人信息详情页
-                component: info,
-                children: [{
-                    path: 'address',
-                    component: address,     //编辑地址
-                    children:[{
-                        path:'add',
-                        component:add,
-                        children:[{
-                            path:'addDetail',
-                            component:addDetail
+                    path: 'info', //个人信息详情页
+                    component: info,
+                    children: [{
+                        path: 'address',
+                        component: address, //编辑地址
+                        children: [{
+                            path: 'add',
+                            component: add,
+                            children: [{
+                                path: 'addDetail',
+                                component: addDetail
+                            }]
                         }]
                     }]
-                }]
-            },
-            {
-                path: 'setusername',
-                component: setusername,
-            },
-            {
-                path: 'service', //服务中心
-                component: service,
-            },]
+                },
+                {
+                    path: 'setusername',
+                    component: setusername,
+                },
+                {
+                    path: 'service', //服务中心
+                    component: service,
+                },
+            ]
         },
         //修改密码页
         {
@@ -189,7 +187,7 @@ export default [{
             }, {
                 path: 'vipDescription', //会员说明
                 component: vipDescription,
-            },]
+            }, ]
         },
         //发现页
         {
@@ -205,7 +203,7 @@ export default [{
         {
             path: '/service',
             component: service,
-             children: [{
+            children: [{
                 path: 'questionDetail', //订单详情页
                 component: questionDetail,
             }, ]
@@ -238,7 +236,7 @@ export default [{
             }, {
                 path: 'commend', //推荐有奖
                 component: commend,
-            },]
+            }, ]
         },
         //我的积分页
         {

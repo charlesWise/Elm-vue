@@ -34,10 +34,6 @@
         mounted(){
             //获取用户信息
             this.getUserInfo();
-
-        },
-        mounted(){
-
         },
         props: ['signinUp', 'headTitle', 'goBack'],
         computed: {
@@ -50,14 +46,12 @@
                 'getUserInfo'
             ]),
         },
-
     }
 
 </script>
 
 <style lang="scss" scoped>
     @import '../../style/mixin';
-
     #head_top{
         background-color: $blue;
         position: fixed;

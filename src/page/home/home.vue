@@ -1,7 +1,7 @@
 <template>
   	<div>
         <head-top signin-up='home'>
-            <span slot='logo' class="head_logo"  @click="reload">ele.me</span>
+            <span slot='logo' class="head_logo" @click="reload">elm</span>
         </head-top>
         <nav class="city_nav">
             <div class="city_tip">
@@ -13,14 +13,14 @@
                 <svg class="arrow_right">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
                 </svg>
-            </router-link>  
+            </router-link>
         </nav>
         <section id="hot_city_container">
             <h4 class="city_title">热门城市</h4>
             <ul class="citylistul clear">
                 <router-link  tag="li" v-for="item in hotcity" :to="'/city/' + item.id" :key="item.id">
                     {{item.name}}
-                </router-link>  
+                </router-link>
             </ul>
         </section>
         <section class="group_city_container">
@@ -32,8 +32,7 @@
                     <ul class="groupcity_name_container citylistul clear">
                         <router-link  tag="li" v-for="item in value" :to="'/city/' + item.id" :key="item.id" class="ellipsis">
                             {{item.name}}
-
-                        </router-link>  
+                        </router-link>
                     </ul>
                 </li>
             </ul>
@@ -54,19 +53,16 @@ export default {
             groupcity: {},   //所有城市列表
         }
     },
-
 	mounted(){
         // 获取当前城市
         cityGuess().then(res => {
             this.guessCity = res.name;
             this.guessCityid = res.id;
         })
-
         //获取热门城市
         hotcity().then(res => {
             this.hotcity = res;
         })
-
         //获取所有城市
         groupcity().then(res => {
             this.groupcity = res;
