@@ -1,6 +1,6 @@
 export const guesscity = {
 	"id": 1,
-	"name": "上海",
+	"name": "上海奋斗奋斗",
 	"abbr": "SH",
 	"area_code": "021",
 	"sort": 1,
