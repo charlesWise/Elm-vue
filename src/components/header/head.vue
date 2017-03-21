@@ -39,13 +39,13 @@
         computed: {
             ...mapState([
                 'userInfo'
-            ]),
+            ])
         },
         methods: {
             ...mapActions([
                 'getUserInfo'
-            ]),
-        },
+            ])
+        }
     }
 
 </script>

@@ -56,3 +56,8 @@ console.log(String.fromCharCode(65))  //'A'
 ``` bash
 this.cityid = this.$route.params.cityid;
 ```
+##### 阻止默认
+``` bash
+@click.prevent=""   @click.prevent
+@click.stop=""   @click.stop
+```

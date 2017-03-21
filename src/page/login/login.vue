@@ -71,12 +71,12 @@
                 alertText: null, //提示的内容
             }
         },
-        created(){
+        mounted(){
             this.getCaptchaCode();
         },
         components: {
             headTop,
-            alertTip,
+            alertTip
         },
         computed: {
             //判断手机号码
