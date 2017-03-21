@@ -12,6 +12,7 @@ npm run build
 生成的dist文件夹放在服务器即可正常访问
 
 ##### transition使用
+``` bash
 <transition name="router-fade" mode="out-in">
     <router-view></router-view>
 </transition>
@@ -21,12 +22,11 @@ npm run build
 .router-fade-enter, .router-fade-leave-active {
     opacity: 0;
 }
-
+```
 ##### 页面跳转
 ``` bash
 $router.go(-1)
-this.$router.push({path:'/delial', query:{id}})
-http://localhost:9090/#/delial?id=22
+this.$router.push({path:'/delial', query:{id}})  http://localhost:9090/#/delial?id=22
 ```
 ##### tag="li" li标签
 ``` bash
@@ -35,8 +35,7 @@ http://localhost:9090/#/delial?id=22
         {{item.name}}
     </router-link>
 </ul>
-
- <ul>
+<ul>
     <li v-for="(value, key, index) in sortgroupcity" :key="key">
         <h4 class="city_title">{{key}}
             <span v-if="index === 0">（按字母排序）</span>
@@ -50,7 +49,9 @@ http://localhost:9090/#/delial?id=22
 </ul>
 ```
 ##### String.fromCharCode(i)  根据字符码数获取对应的字符
+``` bash
 console.log(String.fromCharCode(65))  //'A'
+```
 ##### 获取路由参数
 ``` bash
 this.cityid = this.$route.params.cityid;
