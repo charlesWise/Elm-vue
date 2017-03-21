@@ -1,14 +1,16 @@
  <template>
-    <div class="alet_container">
-	    <section class="tip_text_container">
-            <div class="tip_icon">
-                <span></span>
-                <span></span>
-            </div>
-            <p class="tip_text">{{alertText}}</p>
-            <div class="confrim" @click="closeTip">确认</div>
-        </section>
-    </div>
+    <transition name="fade">
+        <div class="alet_container">
+    	    <section class="tip_text_container">
+                <div class="tip_icon">
+                    <span></span>
+                    <span></span>
+                </div>
+                <p class="tip_text">{{alertText}}</p>
+                <div class="confrim" @click="closeTip">确认</div>
+            </section>
+        </div>
+    </transition>
 </template>
 
 <script>
@@ -40,12 +42,19 @@
        100% { transform: scale(1) }
     }
     .alet_container{
+        background: rgba(0, 0, 0, .7);
     	position: fixed;
     	top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         z-index: 200;
+        &.fade-enter-active, .fade-leave-active {
+          transition: all .5s;
+        }
+        &.fade-enter, .fade-leave-active {
+          opacity: 0;
+        }
     }
     .tip_text_container{
         position: absolute;

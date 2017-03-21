@@ -69,6 +69,7 @@
                 codeNumber: null, //验证码
                 showAlert: false, //显示提示组件
                 alertText: null, //提示的内容
+                timer: null
             }
         },
         mounted(){
@@ -79,9 +80,9 @@
             alertTip
         },
         computed: {
-            //判断手机号码
+            //判断手机号码是否正确
             rightPhoneNumber: function (){
-                return /^1\d{10}$/gi.test(this.phoneNumber)
+                return /^1[3|4|5|7|8][0-9]{9}$/.test(this.phoneNumber)
             }
         },
         methods: {
@@ -92,23 +93,10 @@
             changeLoginWay(){
                 this.loginWay = !this.loginWay;
             },
-            //是否显示密码
-            changePassWordType(){
-                this.showPassword = !this.showPassword;
-            },
-            //获取验证吗，线上环境使用固定的图片，生产环境使用真实的验证码
-            async getCaptchaCode(){
-                if (process.env.NODE_ENV !== 'development'){
-                    this.captchaCodeImg = 'http://test.fe.ptdev.cn/elm/yzm.jpg';
-                }else{
-                    let res = await getcaptchas();
-                    this.captchaCodeImg = 'https://mainsite-restapi.ele.me/v1/captchas/' + res.code;
-                }
-            },
             //获取短信验证码
             async getVerifyCode(){
                 if (this.rightPhoneNumber) {
-                    this.computedTime = 30;
+                    this.computedTime = 60;
                     this.timer = setInterval(() => {
                         this.computedTime --;
                         if (this.computedTime == 0) {
@@ -120,20 +108,33 @@
                     if (exsis.message) {
                         this.showAlert = true;
                         this.alertText = exsis.message;
-                        return
+                        return;
                     }else if(!exsis.is_exists) {
                         this.showAlert = true;
                         this.alertText = '您输入的手机号尚未绑定';
-                        return
+                        return;
                     }
                     //发送短信验证码
                     let res = await mobileCode(this.phoneNumber);
                     if (res.message) {
                         this.showAlert = true;
                         this.alertText = res.message;
-                        return
+                        return;
                     }
                     this.validate_token = res.validate_token;
+                }
+            },
+            //是否显示密码
+            changePassWordType(){
+                this.showPassword = !this.showPassword;
+            },
+            //获取验证码，线上环境使用固定的图片，生产环境使用真实的验证码
+            async getCaptchaCode(){
+                if (process.env.NODE_ENV !== 'development'){
+                    this.captchaCodeImg = 'http://test.fe.ptdev.cn/elm/yzm.jpg';
+                }else{
+                    let res = await getcaptchas();
+                    this.captchaCodeImg = 'https://mainsite-restapi.ele.me/v1/captchas/' + res.code;
                 }
             },
             //发送登录信息
@@ -175,7 +176,6 @@
                 }else{
                     this.RECORD_USERINFO(this.userInfo);
                     this.$router.go(-1);
-
                 }
             },
             closeTip(){

@@ -217,8 +217,6 @@ if (process.env.NODE_ENV == 'development') {
     });
 
 
-
-
     var getcaptchas = () => fetch('POST', '/v1/captchas', {});
 
 
@@ -249,7 +247,7 @@ if (process.env.NODE_ENV == 'development') {
         [type]: sendData,
         type: "sms",
         way: type,
-        password,
+        password
     });
 
 
