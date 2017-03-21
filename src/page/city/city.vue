@@ -4,15 +4,14 @@
             <router-link to="/home" slot="changecity" class="change_city">切换城市</router-link>
         </head-top>
         <form class="city_form" v-on:submit.prevent>
-            <div>
-                <input type="search" name="city" placeholder="输入学校、商务楼、地址" class="city_input input_style" required v-model='inputVaule'>
+            <div class="into_box">
+                <input type="text" name="city" class="city_input input_style" v-model='inputVaule' required placeholder="输入学校、商务楼、地址"/>
+                <i class="icon_clear" v-if="isclear" @click='clearinto'></i>
             </div>
-            <div>
-                <input type="submit" name="submit" class="city_submit input_style" @click='postpois' value="提交">
-            </div>
+            <div><input type="submit" name="submit" class="city_submit input_style" @click='postpois' value="提交" /></div>
         </form>
         <header v-if="historytitle" class="pois_search_history">搜索历史</header>
-        <ul class="getpois_ul">
+        <ul v-if="placelist && placelist.length > 0" class="getpois_ul">
             <li v-for="(item, index) in placelist" @click='nextpage(index, item.geohash)' :key="index">
                 <h4 class="pois_name ellipsis">{{item.name}}</h4>
                 <p class="pois_address ellipsis">{{item.address}}</p>
@@ -23,7 +22,7 @@
 </template>
 
 <script>
-    import headTop from 'src/components/header/head'
+    import headTop from 'components/header/head'
     import {currentcity, searchplace} from 'src/service/getData'
     import {getStore, setStore} from 'src/config/mUtils'
 
@@ -39,7 +38,6 @@
                 placeNone: false, // 搜索无结果，显示提示信息
             }
         },
-
         mounted(){
             this.cityid = this.$route.params.cityid;
             //获取当前城市名字
@@ -51,26 +49,29 @@
                 this.placelist = JSON.parse(getStore('placeHistory'));
             }
         },
-
         components:{
             headTop
         },
-
         computed:{
-
+            //是否显示icon clear
+            isclear() {
+                return this.inputVaule;
+            }
         },
-
         methods:{
+            //清除输入框
+            clearinto() {
+                this.inputVaule = '';
+                this.isclear = false;
+            },
             //发送搜索信息inputVaule
             postpois(){
-                //输入值不为空时才发送信息
-                if (this.inputVaule) {
-                    searchplace(this.cityid, this.inputVaule).then(res => {
-                        this.historytitle = false;
-                        this.placelist = res;
-                        this.placeNone = res.length? false : true;
-                    })
-                }
+                if (!this.inputVaule) return; //输入值不为空时才发送信息
+                searchplace(this.cityid, this.inputVaule).then(res => {
+                    this.historytitle = false;
+                    this.placelist = res;
+                    this.placeNone = res.length > 0 ? true : false;
+                })
             },
             /**
              * 点击搜索结果进入下一页面时进行判断是否已经有一样的历史记录
@@ -88,17 +89,16 @@
                         }
                     })
                     if (!checkrepeat) {
-                        this.placeHistory.push(choosePlace)
+                        this.placeHistory.push(choosePlace);
                     }
                 }else {
-                    this.placeHistory.push(choosePlace)
+                    this.placeHistory.push(choosePlace);
                 }
-                setStore('placeHistory',this.placeHistory)
-                this.$router.push({path:'/msite', query:{geohash}})
+                setStore('placeHistory',this.placeHistory);
+                this.$router.push({path:'/msite', query:{geohash}});
             }
         }
     }
-
 </script>
 
 <style lang="scss" scoped>
@@ -120,6 +120,16 @@
             width: 90%;
             margin: 0 auto;
             text-align: center;
+            &.into_box{
+                position: relative;
+                i.icon_clear{
+                    position: absolute;
+                    right: .5rem;
+                    top: .4rem;
+                    background: url(../../images/icon_clear.png) no-repeat;
+                    @include sprite-background(28px, 28px);
+                }
+            }
             .input_style{
                 border-radius: 0.1rem;
                 margin-bottom: 0.4rem;
@@ -137,7 +147,6 @@
         }
     }
     .pois_search_history{
-        border-top: 1px solid $bc;
         border-bottom: 1px solid $bc;
         padding-left: 0.5rem;
         @include font(0.475rem, 0.8rem);

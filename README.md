@@ -22,9 +22,12 @@ npm run build
     opacity: 0;
 }
 
-##### 返回上一个
+##### 页面跳转
+``` bash
 $router.go(-1)
-
+this.$router.push({path:'/delial', query:{id}})
+http://localhost:9090/#/delial?id=22
+```
 ##### tag="li" li标签
 ``` bash
 <ul class="citylistul clear">
@@ -48,3 +51,7 @@ $router.go(-1)
 ```
 ##### String.fromCharCode(i)  根据字符码数获取对应的字符
 console.log(String.fromCharCode(65))  //'A'
+##### 获取路由参数
+``` bash
+this.cityid = this.$route.params.cityid;
+```

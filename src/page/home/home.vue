@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import headTop from '../../components/header/head'
+import headTop from 'components/header/head'
 import {cityGuess, hotcity, groupcity} from '../../service/getData'
 
 export default {
@@ -68,7 +68,6 @@ export default {
             this.groupcity = res;
         })
     },
-
     components:{
         headTop
     },
@@ -84,15 +83,13 @@ export default {
             return sortobj
         }
     },
-
     methods:{
         //点击图标刷新页面
         reload(){
             window.location.reload();
         }
-    },
+    }
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -168,7 +165,6 @@ export default {
             @include sc(0.475rem, #999);
         }
     }
-    
     .letter_classify_li{
         margin-bottom: 0.4rem;
         background-color: #fff;
@@ -179,5 +175,4 @@ export default {
             }
         }
     }
-
 </style>

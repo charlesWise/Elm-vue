@@ -34,7 +34,7 @@ module.exports = {
             '/bos',
             '/member',
             '/promotion',
-            '/eus',
+            '/eus'
         ],
         proxypath: 'https://mainsite-restapi.ele.me',
         // CSS Sourcemaps off by default because relative paths are "buggy"

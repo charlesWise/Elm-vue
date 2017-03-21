@@ -67,3 +67,13 @@ $fc:#fff;
     display: flex;
     justify-content: $type;
 }
+
+//icon小图
+@mixin sprite-background($width, $height, $rate:320/640) {
+    background-size: 100% 100%;
+    display: inline-block;
+    width: $width*$rate;
+    vertical-align: middle;
+    height: $height*$rate;
+    line-height: $height*$rate;
+}
