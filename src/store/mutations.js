@@ -124,7 +124,7 @@ export default {
 	},
 	// 记录用户信息
 	[RECORD_USERINFO](state, info) {
-		state.userInfo = info;
+		state.userInfo = {...info};
 		state.login = true;
 		let validity = 30;
 		let now = new Date();
@@ -136,7 +136,6 @@ export default {
 	[GET_USERINFO](state, info) {
 		if (state.userInfo && (state.userInfo.username !== info.username)) return;
 		if (!state.login) return;
-		
 		if (!info.message) {
 			state.userInfo = {...info};
 			let validity = 30;

@@ -48,8 +48,8 @@
 </template>
 
 <script>
-    import headTop from '../../components/header/head'
-    import alertTip from '../../components/common/alertTip'
+    import headTop from 'components/header/head'
+    import alertTip from 'components/common/alertTip'
     import {mapState, mapMutations} from 'vuex'
     import {mobileCode, checkExsis, sendLogin, getcaptchas, accountLogin} from '../../service/getData'
 
@@ -155,19 +155,20 @@
                     if (!this.userAccount) {
                         this.showAlert = true;
                         this.alertText = '请输入手机号/邮箱/用户名';
-                        return
+                        return;
                     }else if(!this.passWord){
                         this.showAlert = true;
                         this.alertText = '请输入密码';
-                        return
+                        return;
                     }else if(!this.codeNumber){
                         this.showAlert = true;
                         this.alertText = '请输入验证码';
-                        return
+                        return;
                     }
                     //用户名登录
                     this.userInfo = await accountLogin(this.userAccount, this.passWord, this.codeNumber);
                 }
+
                 //如果返回的值不正确，则弹出提示框，返回的值正确则返回上一页
                 if (!this.userInfo.user_id) {
                     this.showAlert = true;

@@ -28,6 +28,15 @@ npm run build
 @click="$router.go(-1)"
 this.$router.go(-1);
 this.$router.push({path:'/delial', query:{id}})  http://localhost:9090/#/delial?id=22
+<router-link :to="'/search/' + geohash" class="link_search" slot="search">
+
+</router-link>
+<router-link to="/home" slot="msite-title" class="msite_title">
+
+</router-link>
+<router-link :to="userInfo? '/profile':'/login'" v-if='signinUp' class="head_login">
+
+</router-link>
 ```
 ##### tag="li" li标签
 ``` bash
