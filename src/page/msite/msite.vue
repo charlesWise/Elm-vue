@@ -29,7 +29,12 @@
 	            		</a>	
 		            </div>
 		        </div>
-		        <div class="swiper-pagination"></div>
+		        <!-- 如果需要分页器 -->
+				<div class="swiper-pagination"></div>
+
+				<!-- 如果需要导航按钮 -->
+				<!-- <div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div> -->
 		    </div>
     	</nav>
     	<div class="shop_list_container">
@@ -82,18 +87,25 @@ export default {
         //获取导航食品类型列表
        	msiteFoodTypes(this.geohash).then(res => {
        		let resLength = res.length;
+       		console.log(res);	//[a, b, c, d, e, f, g, h];
        		let resArr = res.concat([]); // 返回一个新的数组
        		let foodArr = [];
     		for (let i = 0, j = 0; i < resLength; i += 8, j++) {
     			foodArr[j] = resArr.splice(0, 8);
     		}
+    		console.log(foodArr);	//[[a, b, c, d], [e, f, g, h]]
     		this.foodTypes = foodArr;
         }).then(() => {
         	//初始化swiper
-        	new Swiper('.swiper-container', {
-		        pagination: '.swiper-pagination',
-		        loop: true
-		    });
+        	new Swiper ('.swiper-container', {
+			    loop: true,
+			    // 如果需要分页器
+			    pagination: '.swiper-pagination',
+			    
+			    // 如果需要前进后退按钮
+			    // nextButton: '.swiper-button-next',
+			    // prevButton: '.swiper-button-prev',
+			})
         })
     },
     components: {
@@ -106,10 +118,22 @@ export default {
     },
     methods: {
     	...mapMutations([
-    		'RECORD_ADDRESS', 'SAVE_GEOHASH'
+    		'RECORD_ADDRESS',
+    		'SAVE_GEOHASH'
     	]),
     	// 解码url地址，求去restaurant_category_id值
     	getCategoryId(url){
+    		// {
+    		// 	"category_schema":
+    		// 		{
+    		// 			"category_name":"\u5305\u5b50\u7ca5\u5e97","complex_category_ids":[215],"is_show_all_category":true
+    		// 		},
+    		// 	"restaurant_category_id":
+    		// 		{
+    		// 			"id":207,"name":"\u5feb\u9910\u4fbf\u5f53","sub_categories":[],"image_url":""
+    		// 		},
+    		// 	"activities":[]
+    		// }
     		let urlData = decodeURIComponent(url.split('=')[1].replace('&target_name',''));
     		if (/restaurant_category_id/gi.test(urlData)) {
     			return JSON.parse(urlData).restaurant_category_id.id
@@ -192,5 +216,4 @@ export default {
 			}
 		}
 	}
-
 </style>

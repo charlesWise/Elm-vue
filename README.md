@@ -125,3 +125,76 @@ methods: {
     }
 }
 ```
+##### 将一个长的一维数组拆分成两个数组
+``` bash
+let res = [a, b, c, d, e, f, g, h];
+let resLength = res.length;
+console.log(res);	// [a, b, c, d, e, f, g, h];
+let resArr = res.concat([]); // 返回一个新的数组
+let foodArr = [];
+for (let i = 0, j = 0; i < resLength; i += 8, j++) {
+	foodArr[j] = resArr.splice(0, 8);
+}
+console.log(foodArr);	// [[a, b, c, d], [e, f, g, h]];
+this.foodTypes = foodArr;
+```
+##### swiper的使用
+``` bash
+import 'src/plugins/swiper.min.js'
+import 'src/style/swiper.min.css'
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">Slide 1</div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+    
+    <!-- 如果需要导航按钮 -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    
+    <!-- 如果需要滚动条 -->
+    <div class="swiper-scrollbar"></div>
+</div>
+//初始化swiper
+new Swiper ('.swiper-container', {
+    direction: 'vertical',
+    loop: true,
+    
+    // 如果需要分页器
+    pagination: '.swiper-pagination',
+    
+    // 如果需要前进后退按钮
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    
+    // 如果需要滚动条
+    scrollbar: '.swiper-scrollbar',
+})
+eg:
+msiteFoodTypes(this.geohash).then(res => {
+		let resLength = res.length;
+		console.log(res);	//[a, b, c, d, e, f, g, h];
+		let resArr = res.concat([]); // 返回一个新的数组
+		let foodArr = [];
+	for (let i = 0, j = 0; i < resLength; i += 8, j++) {
+		foodArr[j] = resArr.splice(0, 8);
+	}
+	console.log(foodArr);	//[[a, b, c, d], [e, f, g, h]]
+	this.foodTypes = foodArr;
+}).then(() => {
+	//初始化swiper
+	new Swiper ('.swiper-container', {
+	    loop: true,
+	    // 如果需要分页器
+	    pagination: '.swiper-pagination',
+	    
+	    // 如果需要前进后退按钮
+	    // nextButton: '.swiper-button-next',
+	    // prevButton: '.swiper-button-prev',
+	})
+})
+```
