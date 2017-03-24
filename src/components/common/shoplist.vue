@@ -58,7 +58,6 @@
 </template>
 
 <script>
-
 import {mapState} from 'vuex'
 import {shopList} from 'src/service/getData'
 import {showBack, animate} from 'src/config/mUtils'
@@ -81,13 +80,14 @@ export default {
 	},
 	components: {
 		loading,
-		ratingStar,
+		ratingStar
 	},
 	props: ['restaurantCategoryId', 'restaurantCategoryIds', 'sortByType', 'deliveryMode', 'supportIds', 'confirmSelect', 'geohash'],
 	mixins: [loadMore, getImgPath],
 	computed: {
 		...mapState([
-			'latitude','longitude'
+			'latitude',
+			'longitude'
 		])
 	},
 	methods: {
@@ -103,10 +103,7 @@ export default {
 		},
 		//到达底部加载更多数据
 		async loaderMore(){
-			//防止重复请求
-			if (this.preventRepeatReuqest) {
-				return 
-			}
+			if (this.preventRepeatReuqest) return;	//防止重复请求
 			this.showLoading = true;
 			this.preventRepeatReuqest = true;
 
@@ -116,9 +113,7 @@ export default {
 			this.hideLoading();
 			this.shopListArr = [...this.shopListArr, ...res];
 			//当获取数据小于20，说明没有更多数据，不需要再次请求数据
-			if (res.length < 20) {
-				return
-			}
+			if (res.length < 20) return;
 			this.preventRepeatReuqest = false;
 		},
 		//返回顶部

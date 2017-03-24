@@ -13,14 +13,17 @@ npm run build
 
 ##### transition使用
 ``` bash
-<transition name="router-fade" mode="out-in">
+<transition name="fade" mode="out-in">
     <router-view></router-view>
 </transition>
-.router-fade-enter-active, .router-fade-leave-active {
-    transition: opacity .3s;
+<transition name="fade"></transition>
+.fade-enter-active, .fade-leave-active {
+    transition: all .3s;
+    transform: translateY(0);
 }
-.router-fade-enter, .router-fade-leave-active {
+.fade-enter, .fade-leave-active {
     opacity: 0;
+    transform: translateY(-100%);
 }
 ```
 ##### 页面跳转
@@ -28,6 +31,8 @@ npm run build
 @click="$router.go(-1)"
 this.$router.go(-1);
 this.$router.push({path:'/delial', query:{id}})  http://localhost:9090/#/delial?id=22
+this.$route.query.id;  获取从页面传递过来的参数 22
+
 <router-link :to="'/search/' + geohash" class="link_search" slot="search">
 
 </router-link>
@@ -197,4 +202,30 @@ msiteFoodTypes(this.geohash).then(res => {
 	    // prevButton: '.swiper-button-prev',
 	})
 })
+```
+##### mixin loaderMore指令的使用
+``` bash
+<ul v-load-more="loaderMore">
+</ul>
+import {loadMore, getImgPath} from './mixin'
+mixins: [loadMore, getImgPath]
+
+mixin.js
+export const loadMore = {
+    directives: {
+        'load-more': {
+            bind: (el, binding) => {
+                xxxxx
+            }
+        }
+    }
+};
+
+export const getImgPath = {
+    methods: {
+        getImgPath(path) {
+            xxxxx
+        }
+    }
+}
 ```

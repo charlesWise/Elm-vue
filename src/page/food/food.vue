@@ -38,7 +38,7 @@
 	    					</ul>
 	    				</section>
 	    			</section>
-	    		</transition>	
+	    		</transition>
     		</div>
     		<div class="sort_item" :class="{choose_type:sortBy == 'sort'}">
     			<div class="sort_item_container" @click="chooseType('sort')">
@@ -276,7 +276,6 @@ export default {
 			}else{
 				this.restaurant_category_id = id;
 				this.categoryDetail = this.category[index].sub_categories;
-
 			}
 		},
 		//选中Category右侧列表的某个选项时，进行筛选，重新获取数据并渲染
