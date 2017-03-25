@@ -8,7 +8,7 @@
 </template>
 
 <script>
-    import alertTip from 'src/components/common/alertTip'
+    import alertTip from 'components/common/alertTip'
 
     export default {
     	data(){
@@ -24,7 +24,7 @@
         },
         props: ['time'],
         components: {
-            alertTip,
+            alertTip
         },
         methods: {
             closeTip(){
@@ -44,7 +44,7 @@
             },
             gotoPay(){
                 this.showAlert = true;
-                this.alertText = '请前往 官方饿了么APP 支付';
+                this.alertText = '请前往官方饿了么APP 支付';
             }
         },
         computed: {

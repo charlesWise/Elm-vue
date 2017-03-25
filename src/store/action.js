@@ -11,7 +11,6 @@ import {
 export default {
     async getUserInfo({ commit, state }) {
         let res = await getUser();
-        console.log(res);
         commit(GET_USERINFO, res);
     },
     async saveAddress({ commit, state }) {

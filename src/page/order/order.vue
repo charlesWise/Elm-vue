@@ -39,20 +39,17 @@
         <transition name="router-slid" mode="out-in">
             <router-view></router-view>
         </transition>
- 
     </div>
 </template>
 
 <script>
     import {mapState, mapMutations} from 'vuex'
-    import headTop from 'src/components/header/head'
-    import computeTime from 'src/components/common/computeTime'
-    import loading from 'src/components/common/loading'
-    import {getImgPath} from 'src/components/common/mixin'
-    import footGuide from 'src/components/footer/footGuide'
+    import headTop from 'components/header/head'
+    import computeTime from 'components/common/computeTime'
+    import loading from 'components/common/loading'
+    import {getImgPath, loadMore} from 'components/common/mixin'
+    import footGuide from 'components/footer/footGuide'
     import {getOrderList} from 'src/service/getData'
-    import {loadMore} from 'src/components/common/mixin'
-
 
     export default {
       data(){
@@ -66,16 +63,17 @@
         mounted(){
             this.initData();
         },
-        mixins: [loadMore],
+        mixins: [loadMore, getImgPath],
         components: {
             headTop,
             footGuide,
             loading,
-            computeTime,
+            computeTime
         },
         computed: {
             ...mapState([
-                'userInfo', 'geohash'
+                'userInfo', 
+                'geohash'
             ]),
         },
         methods: {
@@ -92,9 +90,7 @@
             },
             //加载更多
             async loaderMore(){
-                if (this.preventRepeat) {
-                    return
-                }
+                if (this.preventRepeat) return;
                 this.preventRepeat = true;
                 this.showLoading = true;
                 this.offset += 10;

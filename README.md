@@ -30,18 +30,15 @@ npm run build
 ``` bash
 @click="$router.go(-1)"
 this.$router.go(-1);
-this.$router.push({path:'/delial', query:{id}})  http://localhost:9090/#/delial?id=22
-this.$route.query.id;  获取从页面传递过来的参数 22
+this.$router.push({path:'/delial', query:{id}})     http://localhost:9090/#/delial?id=22
+this.$route.query.id;  获取从页面传递过来的参数  22
 
-<router-link :to="'/search/' + geohash" class="link_search" slot="search">
+this.$router.push({path: '/search/' + geohash});    http://localhost:9090/#/search/wtw3sm0q087
+this.geohash = this.$route.params.geohash;   获取从页面传递过来的参数,非query  wtw3sm0q087
 
-</router-link>
-<router-link to="/home" slot="msite-title" class="msite_title">
-
-</router-link>
-<router-link :to="userInfo? '/profile':'/login'" v-if='signinUp' class="head_login">
-
-</router-link>
+<router-link :to="'/search/' + geohash" slot="search"></router-link>
+<router-link to="/home" slot="msite-title"></router-link>
+<router-link :to="userInfo? '/profile':'/login'"></router-link>
 ```
 ##### tag="li" li标签
 ``` bash
@@ -124,6 +121,14 @@ methods: {
 }
 子组件
 <div class="confrim" @click="closeTip">确认</div>
+methods: {
+    closeTip(){
+        this.$emit('closeTip')
+    }
+}
+
+父组件 当前引人alertTip组件中的触发this.$emit('closeTip')自定义事件
+<alert-tip v-if="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>  
 methods: {
     closeTip(){
         this.$emit('closeTip')
@@ -228,4 +233,25 @@ export const getImgPath = {
         }
     }
 }
+```
+##### better-scroll使用
+``` bash
+https://www.npmjs.com/package/better-scroll
+
+<section id="scroll_section">
+    xxxxx
+    ...
+</section>
+import BScroll from 'better-scroll'
+
+
+//一般在请求获取到数据之后new BScroll
+this.$nextTick(() => {
+    new BScroll('#scroll_section', {  
+        deceleration: 0.001, //deceleration: 0.001 滚动动量减速越大越快，建议不大于0.01
+        bounce: true, //bounce: true 是否启用弹力动画效果，关掉可以加速
+        swipeTime: 1800, //swipeTime: 2500 swipe 持续时间
+        click: true, //click: true 是否启用click事件
+    }); 
+})
 ```

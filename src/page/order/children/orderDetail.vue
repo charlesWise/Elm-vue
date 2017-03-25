@@ -87,16 +87,14 @@
 </template>
 
 <script>
-    import {mapState, mapMutations} from 'vuex'
-    import headTop from 'src/components/header/head'
-    import {getImgPath} from 'src/components/common/mixin'
+    import {mapState} from 'vuex'
+    import headTop from 'components/header/head'
+    import {getImgPath} from 'components/common/mixin'
     import {getOrderDetail} from 'src/service/getData'
-    import loading from 'src/components/common/loading'
+    import loading from 'components/common/loading'
     import BScroll from 'better-scroll'
 
-
     export default {
-
       data(){
             return{
                 showLoading: true, //显示加载动画
@@ -113,20 +111,23 @@
         },
         computed: {
             ...mapState([
-                'orderDetail', 'geohash', 'userInfo'
-            ]),
+                'orderDetail', 
+                'geohash', 
+                'userInfo'
+            ])
         },
         methods: {
             async initData(){
                 if (this.userInfo && this.userInfo.user_id) {
                     this.orderData = await getOrderDetail(this.userInfo.user_id, this.orderDetail.unique_id);
                     this.showLoading = false;
+                    // https://www.npmjs.com/package/better-scroll
                     this.$nextTick(() => {
-                        new BScroll('#scroll_section', {  
-                            deceleration: 0.001,
-                            bounce: true,
-                            swipeTime: 1800,
-                            click: true,
+                        new BScroll('#scroll_section', {
+                            deceleration: 0.001, //deceleration: 0.001 滚动动量减速越大越快，建议不大于0.01
+                            bounce: true, //bounce: true 是否启用弹力动画效果，关掉可以加速
+                            swipeTime: 1800, //swipeTime: 2500 swipe 持续时间
+                            click: true, //click: true 是否启用click事件
                         }); 
                     })
                 }
@@ -144,7 +145,6 @@
   
 <style lang="scss" scoped>
     @import 'src/style/mixin';
-  
     .order_detail_page{
         position: fixed;
         top: 0;

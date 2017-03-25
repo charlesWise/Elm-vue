@@ -73,9 +73,6 @@ export default {
             emptyResult: false, // 搜索结果为空时显示
         }
     },
-    created(){
-       
-    },
     mounted(){
         this.geohash = this.$route.params.geohash;
         //获取搜索历史记录
@@ -93,7 +90,7 @@ export default {
             if (historyValue) {
                 this.searchValue = historyValue;
             }else if (!this.searchValue) {
-                return 
+                return
             }
             //隐藏历史记录
             this.showHistory = false;
@@ -105,7 +102,7 @@ export default {
              * 如果没有则新增，如果有则不做重复储存，判断完成后进入下一页
              */
             let history = getStore('searchHistory');
-            if (history) { 
+            if (history) {
                 let checkrepeat = false;
                 this.searchHistory = JSON.parse(history);
                 this.searchHistory.forEach(item => {
