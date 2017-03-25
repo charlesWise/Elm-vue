@@ -137,24 +137,24 @@
 </template>
 
 <script>
-import headTop from 'src/components/header/head'
-import footGuide from 'src/components/footer/footGuide'
+import headTop from 'components/header/head'
+import footGuide from 'components/footer/footGuide'
 import {mapState, mapMutations} from 'vuex'
 import {imgBaseUrl} from 'src/config/env'
-import {getImgPath} from 'src/components/common/mixin'
+import {getImgPath} from 'components/common/mixin'
 
 export default {
     data(){
         return{
             profiletitle: '我的',
-            getUserinfo: {},        //得到数据
-            username: '登录/注册',           //用户名
+            getUserinfo: {},    //得到数据
+            username: '登录/注册',    //用户名
             resetname: '',
-            mobile: '登录后享受更多特权',             //电话号码
-            balance: 0,            //我的余额
-            count : 0,             //优惠券个数
+            mobile: '登录后享受更多特权',  //电话号码
+            balance: 0,      //我的余额
+            count : 0,       //优惠券个数
             pointNumber : 0,       //积分数
-            avatar: '',             //头像地址
+            avatar: '',        //头像地址
             imgBaseUrl,
         }
     },
@@ -164,7 +164,7 @@ export default {
     mixins: [getImgPath],
     components:{
         headTop,
-        footGuide,
+        footGuide
     },
 
     computed:{
@@ -177,7 +177,7 @@ export default {
             if(this.avatar.indexOf('/') !==-1){
                 path = imgBaseUrl +　this.avatar;
             }else{
-                path = this.getImgPath(this.avatar)
+                path = this.getImgPath(this.avatar);
             }
             this.SAVE_AVANDER(path);
             return path;
@@ -187,7 +187,7 @@ export default {
     methods:{
         ...mapMutations([
             'SAVE_AVANDER'
-        ]),
+        ])
     },
     watch: {
         userInfo: function (value){

@@ -32,20 +32,16 @@
     export default {
       data(){
             return{
-    			warning:true,
-    			inputAdress:'',
-    			adressList:[],			//地址列表
+        		warning:true,
+        		inputAdress:'',
+        		adressList:[],	//地址列表
             }
-        },
-        created(){
-        	this.inputAdress = this.addAddress ? this.addAddress : this.inputAdress
-        	
-        },
-        mounted(){
-
+      },
+      mounted(){
+            this.inputAdress = this.addAddress ? this.addAddress : this.inputAdress;
         	getSearchAddress(this.inputAdress).then(res => {
-        			this.adressList=res;
-        			this.warning=true;
+        		this.adressList=[...res];
+                this.warning=true;
         		if(this.adressList.length > 0){
         			this.warning=false;
         			if(this.inputAdress == ''){
@@ -54,11 +50,10 @@
         			}
         		}
         	});
-        	
         },
         mixins: [getImgPath],
         components: {
-            headTop,
+            headTop
         },
         computed:{
         	...mapState([
@@ -73,7 +68,7 @@
             //搜索地址
             inputThing(){
             	getSearchAddress(this.inputAdress).then(res => {
-            			this.adressList=res;
+            			this.adressList=[...res];
             			this.warning=true;
             		if(this.adressList.length > 0){
             			this.warning=false;

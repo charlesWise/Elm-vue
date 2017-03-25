@@ -27,16 +27,12 @@
                 bordercolor: false,  //输入框边框颜色
                 opacityall: false,   //字体透明度
                 inputValue: '',       //输入框的内容
-                newusername: ''         //新用户名
+                newusername: ''       //新用户名
             }
-        },
-        created(){
-
         },
         mixins: [getImgPath],
         components: {
-            headTop,
-
+            headTop
         },
         mounted(){
             

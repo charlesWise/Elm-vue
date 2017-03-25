@@ -96,6 +96,8 @@
             </section>
         </section>
         <alert-tip v-if="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>
+        
+        <!--新增<router-view></router-view> 以防止表单填写的信息因为跳转而丢失，因为是使用了zindex的层级定位之上一个覆盖层-->
         <transition name="router-slid" mode="out-in">
             <router-view></router-view>
         </transition>
@@ -122,22 +124,27 @@
                 alertText: null,
             }
         },
+        mounted(){
+
+        },
         beforeDestroy(){
             clearTimeout(this.timer)
         },
         components: {
             headTop,
-            alertTip,
+            alertTip
         },
         mixins: [getImgPath],
         computed:{
              ...mapState([
-                'userInfo', 'imgPath'
+                'userInfo',
+                'imgPath'
             ]),
         },
         methods: {
             ...mapMutations([
-                'OUT_LOGIN', 'SAVE_AVANDER'
+                'OUT_LOGIN',
+                'SAVE_AVANDER'
             ]),
 
             exitlogin(){
@@ -201,7 +208,6 @@
 
 <style lang="scss" scoped>
     @import 'src/style/mixin.scss';
-
     .rating_page{
         position: absolute;
         top: 0;

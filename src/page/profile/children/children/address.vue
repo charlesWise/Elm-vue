@@ -17,12 +17,12 @@
         	</ul>
 			<router-link to='/profile/info/address/add'>
 				<div class="addsite">
-						<span>新增地址</span>
-						<span class="addsvg">
-							<svg fill="#d8d8d8">
-							    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
-							</svg>
-						</span>
+					<span>新增地址</span>
+					<span class="addsvg">
+						<svg fill="#d8d8d8">
+						    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+						</svg>
+					</span>
 				</div>
 			</router-link>
         </section>
@@ -33,8 +33,8 @@
 </template>
 
 <script>
-    import headTop from 'src/components/header/head'
-    import {getImgPath} from 'src/components/common/mixin'
+    import headTop from 'components/header/head'
+    import {getImgPath} from 'components/common/mixin'
     import {mapState,mapActions,} from 'vuex'
     import {getAddressList, deleteAddress} from 'src/service/getData'
 
@@ -43,16 +43,13 @@
             return{
     			deletesite:false, //是否编辑状态
     			editText:'编辑',
-    			adressList:[], //地址列表
+    			adressList:[] //地址列表
             }
         },
         mounted(){
             this.initData();
         },
         mixins: [getImgPath],
-        mounted(){
-        	
-        },
         components: {
             headTop,
         },

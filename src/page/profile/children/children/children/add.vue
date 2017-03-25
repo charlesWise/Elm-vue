@@ -39,12 +39,11 @@
 </template>
 
 <script>
-    import headTop from 'src/components/header/head'
-    import {getImgPath} from 'src/components/common/mixin'
+    import headTop from 'components/header/head'
+    import {getImgPath} from 'components/common/mixin'
     import {mapState, mapMutations} from 'vuex'
     import {postAddAddress} from 'src/service/getData'
-    import alertTip from 'src/components/common/alertTip'
-
+    import alertTip from 'components/common/alertTip'
 
     export default {
       data(){
@@ -63,24 +62,20 @@
     			standbytele:'', //备用手机号提示 
     			standbytelenum:'', //备用手机号
     			addSearch:false, //添加搜索地址
-    			newAddress:{},			//增加数组的元素
+    			newAddress:{},	//增加数组的元素
                 showAlert: false, //弹出框
                 alertText: null, //弹出信息
             }
         },
-        created(){
-
-        },
         mixins: [getImgPath],
         components: {
             headTop,
-            alertTip,
+            alertTip
         },
         computed:{
              ...mapState([
                 'userInfo', 'addAddress','removeAddress','newAddress', 'geohash'
-            ]),
-            
+            ])
         },
         props:[],
         methods: {
@@ -103,7 +98,7 @@
             		this.sendaddress='';
             		this.verifythree=false;
             	}
-            	this.bindThing()	
+            	this.bindThing()
             },
             //输入手机号
             inputThingfour(){

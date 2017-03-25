@@ -244,7 +244,6 @@ https://www.npmjs.com/package/better-scroll
 </section>
 import BScroll from 'better-scroll'
 
-
 //一般在请求获取到数据之后new BScroll
 this.$nextTick(() => {
     new BScroll('#scroll_section', {  
@@ -254,4 +253,12 @@ this.$nextTick(() => {
         click: true, //click: true 是否启用click事件
     }); 
 })
+```
+##### 表单阻止默认prevent
+``` bash
+<form action="" v-on:submit.prevent>
+	xxx
+    ...
+    <button @click.prevent="submitThing">确定</button>
+</form>
 ```
