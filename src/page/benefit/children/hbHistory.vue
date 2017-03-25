@@ -36,14 +36,14 @@
 </template>
 
 <script>
-    import headTop from 'src/components/header/head'
+    import headTop from 'components/header/head'
     import {mapState, mapMutations} from 'vuex'
     import {getExpired} from 'src/service/getData'
-    import loading from 'src/components/common/loading'
+    import loading from 'components/common/loading'
     import BScroll from 'better-scroll'
     
     export default {
-      data(){
+        data(){
             return{
                 showAlert: false,
                 alertText: null,
@@ -56,11 +56,11 @@
         },
         components: {
             headTop,
-            loading,
+            loading
         },
         computed: {
             ...mapState([
-                'userInfo',
+                'userInfo'
             ]),
         },
         methods: {
@@ -78,7 +78,7 @@
                             bounce: true,
                             swipeTime: 1800,
                             click: true,
-                        }); 
+                        });
                     })
                 }
             }

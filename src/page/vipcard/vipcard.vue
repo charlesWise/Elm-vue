@@ -72,12 +72,12 @@
 </template>
 
 <script>
-    import headTop from 'src/components/header/head'
+    import headTop from 'components/header/head'
     import {mapState, mapMutations} from 'vuex'
     import {getOrderList} from 'src/service/getData'
 
     export default {
-      data(){
+        data(){
             return{
     
             }
@@ -91,7 +91,7 @@
             ]),
         },
         components: {
-            headTop,
+            headTop
         },
         methods: {
             ...mapMutations([

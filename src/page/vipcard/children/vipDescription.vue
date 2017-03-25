@@ -1,5 +1,5 @@
  <template>
-  <div class="page_container">
+    <div class="page_container">
         <head-top head-title="我的优惠" go-back='true'></head-top>
         <div class="markdown">
             <blockquote>
@@ -37,18 +37,18 @@
 </template>
 
 <script>
-    import headTop from 'src/components/header/head'
+    import headTop from 'components/header/head'
     import {mapState, mapMutations} from 'vuex'
     import {getOrderList} from 'src/service/getData'
 
     export default {
-      data(){
+        data(){
             return{
     
             }
         },
         mounted(){
-
+            
         },
         computed: {
             ...mapState([
@@ -56,7 +56,7 @@
             ]),
         },
         components: {
-            headTop,
+            headTop
         },
         methods: {
             ...mapMutations([
@@ -68,7 +68,6 @@
   
 <style lang="scss" scoped>
     @import 'src/style/mixin';
-  
     .page_container{
         position: fixed;
         top: 0;

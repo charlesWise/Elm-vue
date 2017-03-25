@@ -125,9 +125,9 @@
 
 <script>
     import {mapState, mapMutations} from 'vuex'
-    import headTop from 'src/components/header/head'
-    import alertTip from 'src/components/common/alertTip'
-    import loading from 'src/components/common/loading'
+    import headTop from 'components/header/head'
+    import alertTip from 'components/common/alertTip'
+    import loading from 'components/common/loading'
     import {checkout, getAddress, placeOrders} from 'src/service/getData'
     import {imgBaseUrl} from 'src/config/env'
 

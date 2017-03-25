@@ -86,21 +86,20 @@
 </template>
 
 <script>
-    import headTop from 'src/components/header/head'
+    import headTop from 'components/header/head'
     import {mapState, mapMutations} from 'vuex'
     import {getHongbaoNum} from 'src/service/getData'
-    import alertTip from 'src/components/common/alertTip'
-    import loading from 'src/components/common/loading'
+    import alertTip from 'components/common/alertTip'
+    import loading from 'components/common/loading'
 
     export default {
-      data(){
+       data(){
             return{
                 showAlert: false, //弹出框
                 alertText: null, //弹出框文字
                 showLoading: true, //加载动画
                 hongbaoList: null, //红包列表
                 categoryType: 1, //红包与商家代金券切换
-
             }
         },
         mounted(){
@@ -109,12 +108,12 @@
         components: {
             headTop,
             alertTip,
-            loading,
+            loading
         },
         computed: {
             ...mapState([
                 'userInfo',
-            ]),
+            ])
         },
         methods: {
             ...mapMutations([

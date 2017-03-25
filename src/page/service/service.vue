@@ -33,12 +33,12 @@
 </template>
 
 <script>
-    import headTop from 'src/components/header/head'
+    import headTop from 'components/header/head'
     import {getService} from 'src/service/getData'
     import {mapMutations} from 'vuex'
 
     export default {
-      data(){
+        data(){
             return{
                 serviceData: null, //服务信息
                 questionTitle: [], //问题标题
@@ -51,7 +51,7 @@
         },
         mixins: [],
         components: {
-            headTop,
+            headTop
         },
         props:[],
         methods: {
@@ -61,6 +61,7 @@
             //获取信息
             async initData(){
                 this.serviceData = await getService();
+                console.log(Object.keys(this.serviceData))
                 Object.keys(this.serviceData).forEach(item => {
                     let avoidRepeat = false;
                     this.questionTitle.forEach((insertItem) => {
@@ -71,7 +72,7 @@
                     })
                     //将标题和内容分别放进数组中
                     if (item.indexOf('Caption') !== -1 && !avoidRepeat) {
-                            this.questionTitle.push(this.serviceData[item]);
+                        this.questionTitle.push(this.serviceData[item]);
                     }else if(!avoidRepeat){
                         this.questionDetail.push(this.serviceData[item]);
                     }
@@ -81,14 +82,13 @@
             toQuestionDetail(title, index){
                 this.SAVE_QUESTION({title, detail: this.questionDetail[index]});
                 this.$router.push('/service/questionDetail');
-            },
+            }
         }
     }
 </script>
   
 <style lang="scss" scoped>
     @import 'src/style/mixin';
-  
     .rating_page{
         background-color: #fff;
         padding-top: 1.95rem;

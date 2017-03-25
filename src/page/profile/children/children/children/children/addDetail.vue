@@ -25,8 +25,8 @@
 </template>
 
 <script>
-    import headTop from 'src/components/header/head'
-    import {getImgPath} from 'src/components/common/mixin'
+    import headTop from 'components/header/head'
+    import {getImgPath} from 'components/common/mixin'
     import {getSearchAddress} from 'src/service/getData'
     import {mapMutations, mapState} from 'vuex'
     export default {

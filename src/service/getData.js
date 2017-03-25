@@ -508,7 +508,7 @@ if (process.env.NODE_ENV == 'development') {
     var postAddAddress = (userId, address, address_detail, geohash, name, phone, phone_bk, poi_type, sex, tag, tag_type) => setpromise(confirm.addAddress);
     var placeOrders = (user_id, cart_id, address_id, description, entities, geohash, sig) => setpromise(confirm.palceOrder);
     var rePostVerify = (cart_id, sig, type) => setpromise(confirm.verfiyCode);
-    validateOrders = ({
+    var validateOrders = ({
         user_id,
         cart_id,
         address_id,

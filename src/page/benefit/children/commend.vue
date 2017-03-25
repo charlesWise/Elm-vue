@@ -38,16 +38,16 @@
 </template>
 
 <script>
-    import headTop from 'src/components/header/head'
+    import headTop from 'components/header/head'
     import {mapState} from 'vuex'
     import {payRequest} from 'src/service/getData'
-    import alertTip from 'src/components/common/alertTip'
+    import alertTip from 'components/common/alertTip'
 
     export default {
-      data(){
+        data(){
             return{
                 showAlert: false,
-                alertText: null,
+                alertText: null
             }
         },
         mounted(){
@@ -59,7 +59,7 @@
         },
         computed: {
             ...mapState([
-                'userInfo',
+                'userInfo'
             ]),
         },
         methods: {

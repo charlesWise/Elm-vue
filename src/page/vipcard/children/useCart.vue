@@ -20,10 +20,10 @@
 </template>
 
 <script>
-    import headTop from 'src/components/header/head'
+    import headTop from 'components/header/head'
     import {mapState, mapMutations} from 'vuex'
     import {vipCart} from 'src/service/getData'
-    import alertTip from 'src/components/common/alertTip'
+    import alertTip from 'components/common/alertTip'
 
     export default {
       data(){
@@ -42,12 +42,12 @@
                 'userInfo', 
             ]),
             couldPay: function (){
-            	return (/^\d{10}$/.test(this.cartNumber))&&(/^\d{6}$/.test(this.passWord)) ;
-            },
+            	return (/^\d{10}$/.test(this.cartNumber))&&(/^\d{6}$/.test(this.passWord));
+            }
         },
         components: {
             headTop,
-            alertTip,
+            alertTip
         },
         methods: {
             async confrimPay(){

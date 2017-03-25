@@ -235,11 +235,12 @@ export default {
     },
     //保存所选问题标题和详情
     [SAVE_QUESTION](state, question) {
-        state.question = {...question };
+        state.question = {...question};
     },
     //增加地址
     [ADD_ADDRESS](state, obj) {
         state.removeAddress = [obj, ...state.removeAddress];
+        console.log('removeAddress', removeAddress)
     },
     //会员卡价格纪录
     [BUY_CART](state, price) {

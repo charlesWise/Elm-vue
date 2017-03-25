@@ -262,3 +262,37 @@ this.$nextTick(() => {
     <button @click.prevent="submitThing">确定</button>
 </form>
 ```
+##### 钱以小数点分割不同样式
+``` bash
+<span>¥</span>
+<span>{{String(item.amount).split('.')[0]}}</span>
+<span>.</span>
+<span>{{String(item.amount).split('.')[1]||0}}</span>
+```
+##### 动态创建iframe触发src属性做下载apk等，类似href a跳转等
+``` bash
+methods: {
+    download(){
+        try {
+            let elemIF = document.createElement("iframe");
+            elemIF.src = 'http://static10.elemecdn.com/uploads/androidapp/eleme6_4_1476672934695.apk';
+            elemIF.style.display = "none";
+            document.body.appendChild(elemIF);
+        } catch (e) {
+            alert('下载失败')
+        }
+    }
+}
+```
+##### showdown 转换markDown格式
+``` bash
+<section v-html="markdownText" class="markdown"></section>
+import showdown from 'showdown'
+computed: {
+    markdownText: function (){
+        //转换markDown格式
+    	let converter = new showdown.Converter();  
+        return converter.makeHtml(this.question.detail);
+    }
+}
+```

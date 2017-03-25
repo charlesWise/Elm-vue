@@ -11,18 +11,18 @@
 </template>
 
 <script>
-    import headTop from 'src/components/header/head'
-    import alertTip from 'src/components/common/alertTip'
+    import headTop from 'components/header/head'
+    import alertTip from 'components/common/alertTip'
 
     export default {
-      data(){
+        data(){
             return{
                 system: null,
                 showAlert: false,
-                alertText: null,
+                alertText: null
             }
         },
-        created(){
+        mounted(){
             //判断系统
             let u = navigator.userAgent;
             let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
@@ -38,7 +38,7 @@
         mixins: [],
         components: {
             headTop,
-            alertTip,
+            alertTip
         },
         props:[],
         methods: {

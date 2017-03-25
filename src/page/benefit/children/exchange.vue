@@ -20,13 +20,13 @@
 </template>
 
 <script>
-    import headTop from 'src/components/header/head'
+    import headTop from 'components/header/head'
     import {mapState} from 'vuex'
     import {getcaptchas, exChangeHongbao} from 'src/service/getData'
-    import alertTip from 'src/components/common/alertTip'
+    import alertTip from 'components/common/alertTip'
 
     export default {
-      data(){
+        data(){
             return{
                 showAlert: false,
                 alertText: null,
@@ -40,14 +40,14 @@
         },
         components: {
             headTop,
-            alertTip,
+            alertTip
         },
         computed: {
             ...mapState([
                 'userInfo',
             ]),
-            status: function (){
-                let status = (/^\d+$/gi.test(this.exchangeCode)) && (/^\w{4}$/gi.test(this.codeNumber))
+            status: function() {
+                let status = (/^\d+$/gi.test(this.exchangeCode)) && (/^\w{4}$/gi.test(this.codeNumber));
                 return status;
             }
         },
