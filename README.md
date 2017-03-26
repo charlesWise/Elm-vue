@@ -296,3 +296,12 @@ computed: {
     }
 }
 ```
+#####  Array.from() 方法从一个类似数组或可迭代对象创建一个新的数组实例。
+``` bash
+const bar = ["a", "b", "c"];
+Array.from(bar);
+// ["a", "b", "c"]
+
+Array.from('foo');
+// ["f", "o", "o"]
+```
