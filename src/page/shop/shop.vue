@@ -17,7 +17,7 @@
                             <path d="M0 0 L8 7 L0 14"  stroke="#fff" stroke-width="1" fill="none"/>
                         </svg>
                     </router-link>
-                    <footer class="description_footer" v-if="shopDetailData.activities.length" @click="showActivitiesFun">
+                    <footer class="description_footer" v-if="shopDetailData.activities && shopDetailData.activities.length" @click="showActivitiesFun">
                         <p class="ellipsis">
                             <span class="tip_icon" :style="{backgroundColor: '#' + shopDetailData.activities[0].icon_color, borderColor: '#' + shopDetailData.activities[0].icon_color}">{{shopDetailData.activities[0].icon_name}}</span>
                             <span>{{shopDetailData.activities[0].description}}（APP专享）</span>
@@ -309,10 +309,10 @@
 <script>
     import {mapState, mapMutations} from 'vuex'
     import {msiteAdress, shopDetails, foodMenu, getRatingList, ratingScores, ratingTags} from 'src/service/getData'
-    import loading from 'src/components/common/loading'
-    import buyCart from 'src/components/common/buyCart'
-    import ratingStar from 'src/components/common/ratingStar'
-    import {loadMore, getImgPath} from 'src/components/common/mixin'
+    import loading from 'components/common/loading'
+    import buyCart from 'components/common/buyCart'
+    import ratingStar from 'components/common/ratingStar'
+    import {loadMore, getImgPath} from 'components/common/mixin'
     import BScroll from 'better-scroll'
 
     export default {
@@ -355,12 +355,10 @@
                 wrapperMenu: null,
             }
         },
-        created(){
+        mounted(){
             this.geohash = this.$route.query.geohash;
             this.shopId = this.$route.query.id;
-            this.INIT_BUYCART();
-        },
-        mounted(){
+            this.INIT_BUYCART();    //初始化时从本地缓存获取购物车数据
             this.initData();
             this.windowHeight = window.innerHeight;
         },
@@ -368,7 +366,7 @@
         components: {
             loading,
             ratingStar,
-            buyCart,
+            buyCart
         },
         computed: {
             ...mapState([
@@ -428,7 +426,8 @@
                 this.ratingScoresData = await ratingScores(this.shopId);
                 //评论Tag列表
                 this.ratingTagsList = await ratingTags(this.shopId);
-                this.RECORD_SHOPDETAIL(this.shopDetailData)
+                this.RECORD_SHOPDETAIL(this.shopDetailData);
+                console.log(this.menuList)
                 //隐藏加载动画
                 this.hideLoading();
             },
@@ -691,6 +690,7 @@
 
 <style lang="scss" scoped>
     @import 'src/style/mixin';
+    
     @keyframes mymove{
        0%   { transform: scale(1) }
        25%  { transform: scale(.8) }

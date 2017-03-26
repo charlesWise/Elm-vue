@@ -102,8 +102,8 @@
 
 <script>
     import {mapState} from 'vuex'
-    import headTop from 'src/components/header/head'
-    import {getImgPath} from 'src/components/common/mixin'
+    import headTop from 'components/header/head'
+    import {getImgPath} from 'components/common/mixin'
     import BScroll from 'better-scroll'
 
 

@@ -77,9 +77,9 @@
 </template>
 
 <script>
-	import headTop from 'src/components/header/head'
+	import headTop from 'components/header/head'
     import {mapState} from 'vuex'
-    import {getImgPath} from 'src/components/common/mixin'
+    import {getImgPath} from 'components/common/mixin'
 
     export default {
     	data(){
